@@ -45,7 +45,7 @@ class GUI
 {
 public:
 	GUI() :type(UIType::NON) {}
-	GUI(UIType type,const int &x,const int &y, GUI* parent, const SDL_Rect& section, bool draw = true, bool inter = false, bool drag = false);
+	GUI(UIType type,const int &x,const int &y, GUI* parent, const SDL_Rect& section, bool draw = true, bool inter = false, bool drag = false, bool allow_focus = true);
 	virtual ~GUI();
 
 	bool Update();
@@ -62,6 +62,8 @@ public:
 	iPoint GetLocalPosition() const;
 	void SetPosRespectParent(Position_Type, const int& margin = 0);
 
+	SDL_Rect GetRect() const;
+
 	void DebugDraw();
 
 	void AddListener(j1Module* module);
@@ -75,6 +77,7 @@ public:
 	bool interactable = true;
 	bool draggable = true;
 	bool drawable = true;
+	bool allow_focus = true;
 
 	bool to_delete = false;
 	iPoint draw_offset = { 0,0 };
